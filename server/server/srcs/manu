@@ -1,0 +1,36 @@
+server {
+	listen					80 default_server;
+	listen					[::]:80 default_server;
+	server_name				manu;
+	return 301				https://$host$request_uri;
+}
+
+server {
+	#SSL configuration
+	listen					443 ssl;
+	listen					[::]:443 ssl;
+	ssl_certificate			/etc/ssl/certs/manu.crt;
+	ssl_certificate_key		/etc/ssl/private/manu.key;
+
+	root					/var/www/manu;
+	index					index.php index.html index.htm index.nginx-debian.html;
+
+	location /
+	{
+		autoindex			on;
+		try_files			$uri $uri/ =404;
+	}
+
+	# pass PHP scripts to FastCGI server
+	location ~ \.php$ 
+	{
+		include				snippets/fastcgi-php.conf;
+		fastcgi_pass		unix:/run/php/php7.3-fpm.sock;
+	}
+
+	# deny access to .htaccess files, if Apache's document root
+	location ~ /\.ht 
+	{
+		deny				all;
+	}
+}

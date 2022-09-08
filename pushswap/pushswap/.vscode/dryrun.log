@@ -1,0 +1,16 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/macbookpro/Desktop/42/42_pushswap/pushswap'
+gcc -Werror -Wextra -Wall    -c -o main.o main.c
+ 
+gcc -Werror -Wextra -Wall    -c -o printstacks.o printstacks.c
+gcc -Werror -Wextra -Wall    -c -o pushswap.o pushswap.c
+gcc -Werror -Wextra -Wall    -c -o operations_push.o operations_push.c
+gcc -Werror -Wextra -Wall    -c -o operations_swap.o operations_swap.c
+gcc -Werror -Wextra -Wall    -c -o operations_rotate.o operations_rotate.c
+gcc -Werror -Wextra -Wall    -c -o operations_reverserotate.o operations_reverserotate.c
+gcc -Werror -Wextra -Wall    -c -o sorting.o sorting.c
+make -C ./src/libft/
+gcc -Werror -Wextra -Wall main.o printstacks.o pushswap.o operations_push.o operations_swap.o operations_rotate.o operations_reverserotate.o sorting.o src/libft/libft.a -o push_swap
+ 
+make: Leaving directory `/Users/macbookpro/Desktop/42/42_pushswap/pushswap'
+ 
